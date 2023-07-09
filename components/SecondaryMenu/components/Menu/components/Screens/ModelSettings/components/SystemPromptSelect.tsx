@@ -56,7 +56,7 @@ export const SystemPromptSelect = () => {
 
     if (!systemPromptId && builtInSystemPrompts.length > 0) {
       systemPromptId = builtInSystemPrompts.filter(
-        (prompt) => prompt.name === `${model?.vendor} Built-In`,
+        (prompt) => prompt.name === `${model.vendor} Built-In`,
       )[0].id;
     }
 
@@ -75,7 +75,7 @@ export const SystemPromptSelect = () => {
     );
 
     const defaultSystemPrompt = builtInSystemPrompts.filter(
-      (prompt) => prompt.name === `${model?.vendor} Built-In`,
+      (prompt) => prompt.name === `${model.vendor} Built-In`,
     )[0];
 
     if (defaultSystemPrompt) {
