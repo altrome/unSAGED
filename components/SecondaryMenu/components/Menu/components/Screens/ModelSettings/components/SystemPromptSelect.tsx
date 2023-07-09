@@ -74,7 +74,7 @@ export const SystemPromptSelect = () => {
   }, [availableSystemPrompts, getDefaultSystemPrompt, builtInSystemPrompts]);
 
   const getAvailableSystemPrompts = useCallback(() => {
-    const model = selectedConversation!.model || PossibleAiModels[defaultModelId];
+    const model = selectedConversation!.model || PossibleAiModels[DEFAULT_MODEL];
 
     const availablePrompts = systemPrompts.filter((prompt) =>
       prompt.models.includes(model.id),

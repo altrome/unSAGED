@@ -37,5 +37,5 @@ export const APP_DOMAIN =
   dockerEnvVarFix(process.env.NEXT_PUBLIC_APP_DOMAIN) ||
   'http://localhost:3000';
 
-  export const DEFAULT_MODEL =
+export const DEFAULT_MODEL =
   dockerEnvVarFix(process.env.DEFAULT_MODEL) || 'gpt-4';
