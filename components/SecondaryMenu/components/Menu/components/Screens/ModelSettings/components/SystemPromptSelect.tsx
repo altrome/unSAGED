@@ -9,6 +9,8 @@ import { SystemPrompt } from '@/types/system-prompt';
 
 import HomeContext from '@/components/Home/home.context';
 
+import { PossibleAiModels } from '@/types/ai-models';
+
 export const SystemPromptSelect = () => {
   const { t } = useTranslation('systemPrompt');
   const {
@@ -18,6 +20,7 @@ export const SystemPromptSelect = () => {
       settings,
       systemPrompts,
       builtInSystemPrompts,
+      defaultModelId
     },
     handleUpdateConversation,
   } = useContext(HomeContext);
@@ -29,7 +32,7 @@ export const SystemPromptSelect = () => {
     string | null
   >(null);
   const [currentSystemPromptId, setCurrentSystemPromptId] = useState<string>(
-    selectedConversation!.model?.vendor,
+    selectedConversation!.model?.vendor || 'OpenAI',
   );
 
   useEffect(() => {
@@ -41,7 +44,7 @@ export const SystemPromptSelect = () => {
   }, [selectedConversation, defaultSystemPromptId]);
 
   const getDefaultSystemPrompt = useCallback(() => {
-    const model = selectedConversation!.model;
+    const model = selectedConversation!.model || PossibleAiModels[defaultModelId];
     // const sectionId = model.vendor.toLocaleLowerCase();
     // const settingId = `${model.id}_default_system_prompt`;
 
@@ -68,7 +71,7 @@ export const SystemPromptSelect = () => {
   }, [availableSystemPrompts, getDefaultSystemPrompt, builtInSystemPrompts]);
 
   const getAvailableSystemPrompts = useCallback(() => {
-    const model = selectedConversation!.model;
+    const model = selectedConversation!.model || PossibleAiModels[defaultModelId];
 
     const availablePrompts = systemPrompts.filter((prompt) =>
       prompt.models.includes(model.id),
