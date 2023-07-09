@@ -2,6 +2,7 @@ import { SupaDatabase } from '../types/supabase';
 import { Conversation, Message } from '@/types/chat';
 
 import { SupabaseClient } from '@supabase/supabase-js';
+import { dockerEnvVarFix } from '@/utils/app/docker/envFix';
 
 export const supaCreateConversation = async (
   supabase: SupabaseClient<SupaDatabase>,
@@ -11,7 +12,7 @@ export const supaCreateConversation = async (
     {
       id: newConversation.id,
       name: newConversation.name,
-      model_id: newConversation.model?.id,
+      model_id: dockerEnvVarFix(process.env.DEFAULT_MODEL),
       system_prompt_id: newConversation.systemPrompt?.id,
       temperature: newConversation.temperature,
       folder_id: newConversation.folderId,
