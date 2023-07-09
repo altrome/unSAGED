@@ -30,6 +30,12 @@ import { VariableModal } from './VariableModal';
 
 import { v4 as uuidv4 } from 'uuid';
 
+import { PossibleAiModels } from '@/types/ai-models';
+
+import {
+  DEFAULT_MODEL
+} from '@/utils/app/const';
+
 interface Props {
   onSend: (conversation: Conversation | undefined, message: Message) => void;
   onRegenerate: (conversation: Conversation | undefined) => void;
@@ -71,7 +77,7 @@ export const ChatInput = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
-    const maxLength = selectedConversation?.model.maxLength;
+    const maxLength = selectedConversation?.model?.maxLength || PossibleAiModels[DEFAULT_MODEL].maxLength;
 
     if (maxLength && value.length > maxLength) {
       alert(
