@@ -11,6 +11,10 @@ import HomeContext from '@/components/Home/home.context';
 
 import { PossibleAiModels } from '@/types/ai-models';
 
+import {
+  DEFAULT_MODEL
+} from '@/utils/app/const';
+
 export const SystemPromptSelect = () => {
   const { t } = useTranslation('systemPrompt');
   const {
@@ -43,7 +47,7 @@ export const SystemPromptSelect = () => {
   }, [selectedConversation, defaultSystemPromptId]);
 
   const getDefaultSystemPrompt = useCallback(() => {
-    const model = selectedConversation!.model || PossibleAiModels[process.env.DEFAULT_MODEL];
+    const model = selectedConversation!.model || PossibleAiModels[DEFAULT_MODEL];
     // const sectionId = model.vendor.toLocaleLowerCase();
     // const settingId = `${model.id}_default_system_prompt`;
 
