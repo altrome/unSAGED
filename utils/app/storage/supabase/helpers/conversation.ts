@@ -44,7 +44,7 @@ export const supaUpdateConversation = async (
     .upsert({
       id: updatedConversation.id,
       name: updatedConversation.name,
-      model_id: updatedConversation.model.id,
+      model_id: updatedConversation.model?.id || PossibleAiModels[DEFAULT_MODEL].id,
       system_prompt_id: updatedConversation.systemPrompt?.id,
       temperature: updatedConversation.temperature,
       folder_id: updatedConversation.folderId,
