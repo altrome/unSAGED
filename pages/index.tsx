@@ -7,7 +7,7 @@ import { dockerEnvVarFix } from '@/utils/app/docker/envFix';
 export { default } from '../components/Home/home';
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  const defaultModelId = dockerEnvVarFix(process.env.DEFAULT_MODEL) || 'gpt-4';
+  const defaultModelId = dockerEnvVarFix(process.env.DEFAULT_MODEL);
 
   return {
     props: {

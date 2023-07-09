@@ -20,7 +20,6 @@ export const SystemPromptSelect = () => {
       settings,
       systemPrompts,
       builtInSystemPrompts,
-      defaultModelId
     },
     handleUpdateConversation,
   } = useContext(HomeContext);
@@ -44,7 +43,7 @@ export const SystemPromptSelect = () => {
   }, [selectedConversation, defaultSystemPromptId]);
 
   const getDefaultSystemPrompt = useCallback(() => {
-    const model = selectedConversation!.model || PossibleAiModels[defaultModelId];
+    const model = selectedConversation!.model || PossibleAiModels[process.env.DEFAULT_MODEL];
     // const sectionId = model.vendor.toLocaleLowerCase();
     // const settingId = `${model.id}_default_system_prompt`;
 
