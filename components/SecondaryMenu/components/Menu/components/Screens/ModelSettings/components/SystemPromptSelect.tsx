@@ -71,7 +71,7 @@ export const SystemPromptSelect = () => {
     const model = selectedConversation?.model;
 
     const availablePrompts = systemPrompts.filter((prompt) =>
-      prompt.models.includes(model?.id),
+      prompt.models.includes(model.id),
     );
 
     const defaultSystemPrompt = builtInSystemPrompts.filter(
