@@ -25,11 +25,11 @@ export const SystemPromptSelect = () => {
   const [availableSystemPrompts, setAvailableSystemPrompts] = useState<
     SystemPrompt[]
   >([]);
-  // const [defaultSystemPromptId, setDefaultSystemPromptId] = useState<
-  //   string | null
-  // >(null);
-  const [currentSystemPromptId, setCurrentSystemPromptId] = useState<string | null>(
-    selectedConversation ? selectedConversation!.model.vendor : null
+  const [defaultSystemPromptId, setDefaultSystemPromptId] = useState<
+    string | null
+  >(null);
+  const [currentSystemPromptId, setCurrentSystemPromptId] = useState<string>(
+    selectedConversation?.model?.vendor
   );
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export const SystemPromptSelect = () => {
   }, [selectedConversation, defaultSystemPromptId]);
 
   const getDefaultSystemPrompt = useCallback(() => {
-    const model = selectedConversation!.model;
+    const model = selectedConversation?.model;
     // const sectionId = model.vendor.toLocaleLowerCase();
     // const settingId = `${model.id}_default_system_prompt`;
 
@@ -56,7 +56,7 @@ export const SystemPromptSelect = () => {
 
     if (!systemPromptId && builtInSystemPrompts.length > 0) {
       systemPromptId = builtInSystemPrompts.filter(
-        (prompt) => prompt.name === `${model.vendor} Built-In`,
+        (prompt) => prompt.name === `${model?.vendor} Built-In`,
       )[0].id;
     }
 
@@ -68,14 +68,14 @@ export const SystemPromptSelect = () => {
   }, [availableSystemPrompts, getDefaultSystemPrompt, builtInSystemPrompts]);
 
   const getAvailableSystemPrompts = useCallback(() => {
-    const model = selectedConversation!.model;
+    const model = selectedConversation?.model;
 
     const availablePrompts = systemPrompts.filter((prompt) =>
-      prompt.models.includes(model.id),
+      prompt.models.includes(model?.id),
     );
 
     const defaultSystemPrompt = builtInSystemPrompts.filter(
-      (prompt) => prompt.name === `${model.vendor} Built-In`,
+      (prompt) => prompt.name === `${model?.vendor} Built-In`,
     )[0];
 
     if (defaultSystemPrompt) {
