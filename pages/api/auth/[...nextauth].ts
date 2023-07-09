@@ -13,7 +13,9 @@ import jwt from 'jsonwebtoken';
 export const authOptions: NextAuthOptions = {
   providers: await getProviders(),
   session: { strategy: 'jwt' },
-
+  theme: {
+    logo: "https://cdn.onsanity.com/images/innex/long_xGPT.png", // Absolute URL to image
+  },
   // Supabase adapter is only enabled if JWT secret is specified
   adapter: SUPABASE_JWT_SECRET
     ? SupabaseAdapter({
