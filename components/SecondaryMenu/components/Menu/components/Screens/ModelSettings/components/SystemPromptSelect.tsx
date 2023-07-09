@@ -25,12 +25,15 @@ export const SystemPromptSelect = () => {
   const [availableSystemPrompts, setAvailableSystemPrompts] = useState<
     SystemPrompt[]
   >([]);
-  const [defaultSystemPromptId, setDefaultSystemPromptId] = useState<
-    string | null
-  >(null);
-  const [currentSystemPromptId, setCurrentSystemPromptId] = useState<string>(
-    selectedConversation!.model.vendor,
-  );
+  if (!selectedConversation) {
+    const [defaultSystemPromptId, setDefaultSystemPromptId] = useState<
+      string | null
+    >(null);
+  } else {
+    const [currentSystemPromptId, setCurrentSystemPromptId] = useState<string>(
+      selectedConversation!.model.vendor,
+    );
+  }
 
   useEffect(() => {
     if (selectedConversation && selectedConversation.systemPrompt) {
