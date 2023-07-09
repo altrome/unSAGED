@@ -28,7 +28,7 @@ export const SystemPromptSelect = () => {
   // const [defaultSystemPromptId, setDefaultSystemPromptId] = useState<
   //   string | null
   // >(null);
-  const [currentSystemPromptId, setCurrentSystemPromptId] = useState<string>(
+  const [currentSystemPromptId, setCurrentSystemPromptId] = useState<string | null>(
     selectedConversation ? selectedConversation!.model.vendor : null
   );
 
