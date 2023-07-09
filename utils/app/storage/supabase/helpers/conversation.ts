@@ -12,7 +12,7 @@ export const supaCreateConversation = async (
     {
       id: newConversation.id,
       name: newConversation.name,
-      model_id: dockerEnvVarFix(process.env.DEFAULT_MODEL),
+      model_id: dockerEnvVarFix(process.env.DEFAULT_MODEL) || 'gpt-4',
       system_prompt_id: newConversation.systemPrompt?.id,
       temperature: newConversation.temperature,
       folder_id: newConversation.folderId,
