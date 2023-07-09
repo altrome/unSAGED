@@ -3,6 +3,12 @@ import { Conversation, Message } from '@/types/chat';
 
 import { SupabaseClient } from '@supabase/supabase-js';
 
+import { PossibleAiModels } from '@/types/ai-models';
+
+import {
+  DEFAULT_MODEL
+} from '@/utils/app/const';
+
 export const supaCreateConversation = async (
   supabase: SupabaseClient<SupaDatabase>,
   newConversation: Conversation,
@@ -11,7 +17,7 @@ export const supaCreateConversation = async (
     {
       id: newConversation.id,
       name: newConversation.name,
-      model_id: newConversation.model.id,
+      model_id: newConversation.model?.id || PossibleAiModels[DEFAULT_MODEL].id,
       system_prompt_id: newConversation.systemPrompt?.id,
       temperature: newConversation.temperature,
       folder_id: newConversation.folderId,
